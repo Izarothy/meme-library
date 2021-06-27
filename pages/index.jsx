@@ -6,7 +6,7 @@ import {useEffect, useState} from 'react';
 export default function Home() {
   const [stuff, setStuff] = useState([])
   const apiFetch = async () => {
-    return fetch(process.env.API_URI)
+    return fetch('https://meme-library.vercel.app/api/memes')
       .then((res) => res.json())
   }
 
