@@ -5,12 +5,15 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: theme => ({
-        'bg-pattern': "url('https://i.imgur.com/eIjNpSh.jpg')"
+        'bgimage': "url('https://images.pexels.com/photos/696680/pexels-photo-696680.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"
       }),
       fontFamily: {
         montserrat: [
           'Montserrat'
         ]
+      },
+      colors: {
+        'teal': '#22D3EE'
       }
     },
   },
