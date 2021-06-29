@@ -7,13 +7,13 @@ export default function Home() {
   const [memeList, setMemeList] = useState([])
   const [searchValue, setSearchValue] = useState('')
 
-  // A function to fetch an array of meme objects from the API
+  // // A function to fetch an array of meme objects from the API
   const apiFetch = async () => {
     return fetch('https://meme-library.vercel.app/api/memes')
       .then((res) => res.json())
   }
 
-  //Fetch on render
+  // //Fetch on render
   useEffect (() => {
     apiFetch().then(data => {
       setMemeList(data)
@@ -45,7 +45,7 @@ export default function Home() {
       <div className="min-h-screen p-6 md:p-12 flex flex-col">
         <h1 className="text-center text-white text-6xl mb-6 font-bold after:">Meme library</h1>
       <div className="self-center flex items-center">
-        <form>
+        <form onSubmit={e => e.preventDefault()}>
           {/* An input to search through the meme base */}
           <input type="text" onChange={(e) => {setSearchValue(e.target.value)}} value={searchValue} placeholder="Search..." className="w-100 block bg-gray-800 px-5 py-3 text-xl rounded-lg mb-4 text-white hover:bg-gray-600 focus:appearance-none focus:outline-none" autoComplete="off"/>
         </form>
