@@ -9,7 +9,7 @@ export default function Home() {
 
   // A function to fetch an array of meme objects from the API
   const apiFetch = async () => {
-    return fetch('http://localhost:3000/api/memes')
+    return fetch('https://meme-library.vercel.app/api/memes')
       .then((res) => res.json())
   }
 

@@ -6,6 +6,6 @@ It was a pretty fun experience - I learned a few things along the way (integrati
 
 ## Preview
 
-Preview the website on [Vercel](https://meme-library.vercel.app/):
+Preview the website on [Vercel](https://meme-library.vercel.app/)
 
 
