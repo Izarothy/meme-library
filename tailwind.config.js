@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: theme => ({
-        'bgimage': "url('https://images.pexels.com/photos/696680/pexels-photo-696680.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')"
+        'bgimage': "url('https://wallpapercave.com/wp/wp2633640.jpg')"
       }),
       fontFamily: {
         montserrat: [
