@@ -1,19 +1,20 @@
 import Head from 'next/head'
 import Meme from '../components/Meme.jsx'
 import NavBar from '../components/NavBar.jsx'
+import Footer from '../components/Footer.jsx'
 import {useState, useEffect, useMemo} from 'react';
 
 export default function Home() {
   const [memeList, setMemeList] = useState([])
   const [searchValue, setSearchValue] = useState('')
 
-  // // A function to fetch an array of meme objects from the API
+  // // // A function to fetch an array of meme objects from the API
   const apiFetch = async () => {
     return fetch('https://meme-library.vercel.app/api/memes')
       .then((res) => res.json())
   }
 
-  // //Fetch on render
+  // // //Fetch on render
   useEffect (() => {
     apiFetch().then(data => {
       setMemeList(data)
@@ -41,20 +42,20 @@ export default function Home() {
       </Head>
       <NavBar />
       <main className="min-h-screen p-2 md:p-28 font-montserrat box-border bg-bgimage bg-fixed">
-
-      <div className="min-h-screen p-6 md:p-12 flex flex-col">
-        <h1 className="text-center text-white text-6xl mb-6 font-bold after:">Meme library</h1>
-      <div className="self-center flex items-center">
-        <form onSubmit={e => e.preventDefault()}>
-          {/* An input to search through the meme base */}
-          <input type="text" onChange={(e) => {setSearchValue(e.target.value)}} value={searchValue} placeholder="Search..." className="w-100 block bg-gray-800 px-5 py-3 text-xl rounded-lg mb-4 text-white hover:bg-gray-600 focus:appearance-none focus:outline-none" autoComplete="off"/>
-        </form>
-      </div>
-      <div className="grid grid-cols-2 gap-y-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8">
-        {/* Map through the new array to render Meme components if the array isn't empty */}
-        {memeList ? filteredMemeList.map((meme, idx) => <Meme image={meme.url} title={meme.title} key={idx} />) : <h1>"No memes"</h1>}
-      </div>
-      </div>
+        <section className="min-h-screen p-6 md:p-12 flex flex-col">
+          <h1 className="text-center text-white text-6xl mb-6 font-bold after:">Meme library</h1>
+          <div className="self-center flex items-center">
+            <form onSubmit={e => e.preventDefault()}>
+              {/* An input to search through the meme base */}
+              <input type="text" onChange={(e) => {setSearchValue(e.target.value)}} value={searchValue} placeholder="Search..." className="w-100 block bg-gray-800 px-5 py-3 text-xl rounded-lg mb-4 text-white hover:bg-gray-600 focus:appearance-none focus:outline-none" autoComplete="off"/>
+            </form>
+          </div>
+          <div className="grid grid-cols-2 gap-y-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8">
+            {/* Map through the new array to render Meme components if the array isn't empty */}
+            {memeList ? filteredMemeList.map((meme, idx) => <Meme image={meme.url} title={meme.title} key={idx} />) : <h1>"No memes"</h1>}
+          </div>
+        </section>
+        <Footer />
       </main>
     </div>
   )
