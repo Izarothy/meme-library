@@ -11,7 +11,7 @@ export default function Home() {
   // A function to fetch an array of meme objects from the API
   const fetchMemes = async () => {
     try {
-    const res = await fetch('https://meme-library.vercel.app')
+    const res = await fetch('https://meme-library.vercel.app/api/memes')
     return res.json(); }
   catch (err) {
     console.log(err); } 
