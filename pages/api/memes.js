@@ -7,11 +7,10 @@ export default async function memeFetch(req, res) {
     const collection = clientDB.db('Data').collection('Memes');
     const query = {url: /^h/ }
     const memeList = await collection.find(query).toArray()
-    res.status(200).json(memeList);
-    } 
-    catch (err) {
-        console.log(err) } 
-    
-    finally {
-        await clientDB.close(); }
+    res.status(200).json(memeList); 
+    } catch (err) {
+        console.log(err)
+    } finally {
+    await clientDB.close();
+    }
 }

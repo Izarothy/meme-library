@@ -8,23 +8,29 @@ export default function Home() {
   const [memeList, setMemeList] = useState([])
   const [searchValue, setSearchValue] = useState('')
 
-  // // // A function to fetch an array of meme objects from the API
-  const apiFetch = async () => {
-    return fetch('https://meme-library.vercel.app/api/memes')
-      .then((res) => res.json())
-  }
+  // A function to fetch an array of meme objects from the API
+  const fetchMemes = async () => {
+    try {
+    const res = await fetch('https://meme-library.vercel.app')
+    return res.json(); }
+  catch (err) {
+    console.log(err); } 
+}
 
-  // // //Fetch on render
+
+  //Fetch on render
   useEffect (() => {
-    apiFetch().then(data => {
+    fetchMemes().then(data => {
       setMemeList(data)
     })
   }, [])
 
   const filteredMemeList = useMemo(() => {
+    if (memeList) {
     return memeList.filter((meme) => {
       return meme.title.toLowerCase().includes(searchValue.toLowerCase());
     })
+  }
   }, [memeList, searchValue])
 
   return (
@@ -42,7 +48,7 @@ export default function Home() {
       </Head>
       <NavBar />
       <main className="min-h-screen p-2 md:p-28 font-montserrat box-border bg-bgimage bg-fixed">
-        <section className="min-h-screen p-6 md:p-12 flex flex-col">
+        <section className="min-h-screen p-6 md:p-12 md:mb-32 flex flex-col">
           <h1 className="text-center text-white text-6xl mb-6 font-bold after:">Meme library</h1>
           <div className="self-center flex items-center">
             <form onSubmit={e => e.preventDefault()}>
@@ -52,7 +58,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 gap-y-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8">
             {/* Map through the new array to render Meme components if the array isn't empty */}
-            {memeList ? filteredMemeList.map((meme, idx) => <Meme image={meme.url} title={meme.title} key={idx} />) : <h1>"No memes"</h1>}
+            {memeList ? filteredMemeList.map((meme, idx) => <Meme image={meme.url} title={meme.title} key={idx} />) : <h1 className="text-center text-white text-3xl">No memes found</h1>}
           </div>
         </section>
         <Footer />
